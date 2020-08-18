@@ -1,3 +1,5 @@
 <div class="Main">
-    main
+  <div class="Main-container text-center">
+    <slot />
+  </div>
 </div>

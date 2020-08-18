@@ -1,10 +1,14 @@
 <script>
   import Header from "../components/Header.svelte";
   import Logo from "../components/Logo.svelte";
-  import Button from "../components/Button.svelte";
   import Main from "../components/Main.svelte";
 
+  import { faBook } from "@fortawesome/free-solid-svg-icons/faBook";
+  import Fa from "svelte-fa";
+  let icon = faBook;
+
   import { isDark } from "../stores/stores";
+  import Button from "sveltestrap/src/Button.svelte";
 
   isDark.subscribe((value) => {
     value
@@ -18,8 +22,9 @@
 </script>
 
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
   :global(:root) {
-    --light-theme-body-background: #ebedf0;
+    --light-theme-body-background: #ffff;
     --dark-theme-body-background: #1c1e21;
   }
 
@@ -32,12 +37,32 @@
     background-color: var(--dark-theme-body-background);
     color: white;
   }
+
+  :global(Button) {
+    font-family: "Montserrat", sans-serif;
+    /* text-transform: uppercase; */
+    padding: 1rem 3.5rem !important;
+    line-height: 1.5 !important;
+    color: white !important;
+    font-size: 2rem !important;
+    border-radius: 1rem !important;
+    outline: none !important;
+    border: none !important;
+  }
+  :global(Button):focus {
+    box-shadow: none !important;
+  }
 </style>
 
 <Header />
 <Main>
-  <Logo />
-  <Button />
-</Main>
 
-<button on:click={handleDarkMode}>dark mode</button>
+  <Logo />
+  <Button color="warning">
+    <Fa {icon} size="sm" />
+    Learn
+  </Button>
+  <!-- <Button on:click={handleDarkMode}/> -->
+</Main>
+<!-- 
+<button on:click={handleDarkMode}>dark mode</button> -->
