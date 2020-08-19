@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "run-p watch:routify dev",
+    "start-local": "run-p watch:routify local",
     "dev": "webpack-dev-server --open --mode development",
+    "local": "webpack-dev-server --inline --port 8080 --host 0.0.0.0 --content-base  .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:routify": "routify"
   },
