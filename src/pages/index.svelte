@@ -1,7 +1,5 @@
 <script>
-  import Header from "../components/Header.svelte";
   import Logo from "../components/Logo.svelte";
-  import Main from "../components/Main.svelte";
 
   import { faBook } from "@fortawesome/free-solid-svg-icons/faBook";
   import Fa from "svelte-fa";
@@ -9,6 +7,9 @@
 
   import { isDark } from "../stores/stores";
   import Button from "sveltestrap/src/Button.svelte";
+  import Login from "../components/Login.svelte";
+
+  import { url } from "@sveltech/routify";
 
   isDark.subscribe((value) => {
     value
@@ -19,6 +20,10 @@
   function handleDarkMode() {
     $isDark = !$isDark;
   }
+
+  export let open;
+  open = false;
+  const toggle = () => (open = !open);
 </script>
 
 <style>
@@ -41,7 +46,9 @@
   :global(Button) {
     font-family: "Montserrat", sans-serif;
     /* text-transform: uppercase; */
-    padding: 1rem 3.5rem !important;
+    padding: 0.5rem 2.5rem !important;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     line-height: 1.5 !important;
     color: white !important;
     font-size: 2rem !important;
@@ -54,15 +61,14 @@
   }
 </style>
 
-<Header />
-<Main>
-
+<div class="Index">
+  <Login {open} on:click={toggle} />
   <Logo />
-  <Button color="warning">
-    <Fa {icon} size="sm" />
-    Learn
-  </Button>
-  <!-- <Button on:click={handleDarkMode}/> -->
-</Main>
-<!-- 
-<button on:click={handleDarkMode}>dark mode</button> -->
+  <a href={$url('../learn')}>
+    <Button color="warning">
+      <Fa {icon} size="sm" />
+      Learn
+    </Button>
+  </a>
+  <!-- button on:click={handleDarkMode}>dark mode</button> -->
+</div>
